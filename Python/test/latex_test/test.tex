@@ -1,0 +1,29 @@
+\documentclass{article}
+
+% AMS packages
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+
+% Figure packages
+\usepackage{graphicx}  % For figures in general
+\usepackage{float}  % For "H"-ere parameter to force placement of pictures
+\usepackage{subcaption}  % For subfigures
+
+% \usepackage[swedish]{babel}  % For swedish labels (e.g. "figure" -> "figur")
+
+\usepackage{pythontex}
+
+\setlength{\parindent}{0pt}
+
+\title{}
+\author{Max Sundblad}
+\date{}
+
+\begin{document}
+	\pyc{from scipy.constants import c}
+
+	\maketitle
+
+	$2c = \py{2*c}$
+\end{document}

@@ -1,0 +1,11 @@
+from sympy import *
+
+dK_0 = Mul(Symbol('R_0', real=True), Add(Mul(Integer(2), Symbol('R_0', real=True), Symbol('r_0', real=True), Add(Mul(Symbol('R_0', real=True), Symbol('r_0', real=True), Function('\\eta')(Symbol('t', real=True)), sin(Symbol('\\theta'))), Mul(Integer(-1), Symbol('R_0', real=True), Function('\\Delta')(Symbol('\\beta', real=True), Symbol('t', real=True))), Mul(Symbol('R_0', real=True), Function('\\delta')(Symbol('t', real=True)), cos(Symbol('\\theta'))), Mul(Symbol('r_0', real=True), Function('\\Delta')(Symbol('\\beta', real=True), Symbol('t', real=True)), cos(Symbol('\\theta'))), Mul(Integer(-1), Symbol('r_0', real=True), Function('\\delta')(Symbol('t', real=True)))), sin(Symbol('\\theta')), cos(Symbol('\\theta'))), Mul(Add(Mul(Symbol('R_0', real=True), Symbol('r_0', real=True), Function('\\eta')(Symbol('t', real=True)), Pow(sin(Symbol('\\theta')), Integer(2))), Mul(Add(Mul(Integer(-1), Symbol('R_0', real=True), Symbol('r_0', real=True), Function('\\eta')(Symbol('t', real=True)), cos(Symbol('\\theta'))), Mul(Symbol('R_0', real=True), Function('\\delta')(Symbol('t', real=True)), sin(Symbol('\\theta'))), Mul(Symbol('R_0', real=True), Derivative(Function('\\Delta')(Symbol('\\beta', real=True), Symbol('t', real=True)), Tuple(Symbol('\\beta', real=True), Integer(1)))), Mul(Integer(2), Symbol('r_0', real=True), Function('\\Delta')(Symbol('\\beta', real=True), Symbol('t', real=True)), sin(Symbol('\\theta'))), Mul(Integer(-1), Symbol('r_0', real=True), cos(Symbol('\\theta')), Derivative(Function('\\Delta')(Symbol('\\beta', real=True), Symbol('t', real=True)), Tuple(Symbol('\\beta', real=True), Integer(1))))), cos(Symbol('\\theta')))), Add(Pow(Symbol('R_0', real=True), Integer(2)), Mul(Integer(-1), Integer(2), Symbol('R_0', real=True), Symbol('r_0', real=True), cos(Symbol('\\theta'))), Pow(Symbol('r_0', real=True), Integer(2))))), Pow(Add(Pow(Symbol('R_0', real=True), Integer(2)), Mul(Integer(-1), Integer(2), Symbol('R_0', real=True), Symbol('r_0', real=True), cos(Symbol('\\theta'))), Pow(Symbol('r_0', real=True), Integer(2))), Integer(-2)))
+
+#print(latex(dK_0.args[2].args[1].simplify()))
+
+#print(latex(dK_0.expand().simplify().factor()))
+
+x, a = symbols("x, a")
+
+print(((a*x**2 + 2*x**2 + 2*x)/a).as_numer_denom()[0].coeff(x**2))
