@@ -1,4 +1,4 @@
-#!/home/max/Documents/Python/sympy/.venv/bin/python
+#!/home/max/Documents/git_sync/Python/sympy/.venv/bin/python
 # -*- coding: utf-8 -*-
 import re
 import sys
