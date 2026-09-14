@@ -1,54 +1,36 @@
-from rk4 import rk4
-import matplotlib.pyplot as plt
 import numpy as np
 
-A = 0.1*0.1
-p_0 = 1e5
-m_s = 0.5
+K = np.array([
+    [1, 1, 1, 1, 1, 1, 1],
+    [0, 1, 1, 2, 2, 3, 4],
+    [0, 0, 1, 1, 2, 3, 5],
+    [0, 0, 0, 1, 1, 3, 6],
+    [0, 0, 0, 0, 1, 2, 5],
+    [0, 0, 0, 0, 0, 1, 4],
+    [0, 0, 0, 0, 0, 0, 1]
+]).transpose()
 
-V_st = 0.1*A
+M = np.array([
+    [1, 1, 1, 1, 1, 1],
+    [5, 3, 2, 1, 1, 0],
+    [10, 4, 1, 2, 0, 0],
+    [20, 6, 1, 0, 0, 0],
+    [30, 5, 0, 1, 0, 0],
+    [60, 1, 0, 0, 0, 0],
+    [120, 0, 0, 0, 0, 0]
+])
 
-rho = 1323
-m = rho*V_st
-M = 32*1e-3
-n = m/M
-N_0 = 6.022*1e23
-N = n*N_0
+S = np.zeros_like(M)
 
-k = 1.380*1e-23
-T = 300
-mu = 100
+for (i, r) in enumerate(M):
+    res = M[i]
 
-a = N*k*T/m_s
-b = A*p_0/m_s
+    for j in range(0, i):
+        print(f"Iteration {j} in {i} : {K[i, j]*S[j]}")
+        res -= K[i, j]*S[j]
 
-x_stable = a/b
-eps = -100
-x_0 = x_stable + eps
-v_0 = 0
+    print(f"{i} : res = {res}")
 
-def friction(v):
-    return -mu*np.arctan(10*v)
+    S[i] = res
 
-def f(t, y):
-    return np.array([y[1], (a/y[0]) - b + friction(y[1])])
-
-#def f(t, y):
-#    return np.array([y[1], -y[0]])
-
-t_0 = 0
-t_1 = 100
-y_0 = np.array([x_0, v_0])
-
-Iter = int(1e5)
-
-sol = rk4(f, y_0, t_0, t_1, Iter)
-
-fig, ax = plt.subplots()
-
-ax.plot(sol[0], sol[1][0], color="black", label="displacement")
-ax.plot(sol[0], sol[0]*0 + x_stable, "--r", label="x_stable = " + str(x_stable))
-
-ax.legend()
-
-plt.show()
+print(S)
